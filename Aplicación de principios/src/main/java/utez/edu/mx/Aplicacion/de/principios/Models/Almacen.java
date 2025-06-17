@@ -1,36 +1,31 @@
 package utez.edu.mx.Aplicacion.de.principios.Models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
-import java.util.List;
 
+@Entity
 public class Almacen{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
+    @Column(unique = true)
     private String clave;
     private LocalDate fechaRegistro;
     private Double precioVenta;
     private Tamaños tamaño;
 
+
     @ManyToOne
+    @JsonBackReference
     @JoinColumn(name = "cede_id")
-    private Cedes cede;
+    private Cede cede;
 
     @ManyToOne
     @JoinColumn(name = "cliente_id")
-    private Clientes cliente;
+    private Cliente cliente;
 
-
-    @ManyToOne
-    @JoinColumn(name = "cede_id")
-    private Cedes cedes;
-
-    @ManyToOne
-    @JoinColumn(name = "cliente_id")
-    private Clientes clientes;
 
 
     public Long getId() {
@@ -73,12 +68,19 @@ public class Almacen{
         this.tamaño = tamaño;
     }
 
-    public Cedes getCede() {
+    public Cede getCede() {
         return cede;
     }
 
-    public void setCede(Cedes cede) {
+    public void setCede(Cede cede) {
         this.cede = cede;
     }
 
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
 }
