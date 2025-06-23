@@ -58,11 +58,4 @@ public class Cede {
     public void setAlmacenes(List<Almacen> almacenes) {
         this.almacenes = almacenes;
     }
-
-    /*@PrePersist
-    public void generarClave() {
-        String fecha = LocalDate.now().format(DateTimeFormatter.ofPattern("ddMMyyyy"));
-        int aleatorio = new Random().nextInt(9000) + 1000;
-        this.clave = "C" + id + "-" + fecha + "-" + aleatorio;
-    }*/
 }

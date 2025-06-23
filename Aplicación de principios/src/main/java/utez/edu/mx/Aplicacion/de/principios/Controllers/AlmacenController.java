@@ -58,4 +58,9 @@ public class AlmacenController {
         almacenService.eliminarAlmacen(id);
         return ResponseEntity.noContent().build();
     }
+
+    @PutMapping("/{idAlmacen}/asignar/{idCliente}")
+    public ResponseEntity<?> asignarAlmacen(@PathVariable Long idAlmacen, @PathVariable Long idCliente) {
+        return ResponseEntity.ok(almacenService.asignarAlmacenACliente(idAlmacen, idCliente));
+    }
 }

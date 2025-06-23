@@ -14,6 +14,8 @@ public class ClienteDTO {
 
     @Email(message = "Correo no válido")
     private String correo;
+    @NotBlank
+    private String password;
 
     public Long getId() {
         return id;
@@ -45,5 +47,13 @@ public class ClienteDTO {
 
     public void setCorreo(String correo) {
         this.correo = correo;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

@@ -6,7 +6,7 @@ import jakarta.persistence.*;
 import java.time.LocalDate;
 
 @Entity
-public class Almacen{
+public class Almacen {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -15,7 +15,7 @@ public class Almacen{
     private LocalDate fechaRegistro;
     private Double precioVenta;
     private Tamaños tamaño;
-
+    private Estados status;
 
     @ManyToOne
     @JsonBackReference
@@ -24,8 +24,8 @@ public class Almacen{
 
     @ManyToOne
     @JoinColumn(name = "cliente_id")
+    @JsonBackReference
     private Cliente cliente;
-
 
 
     public Long getId() {
@@ -82,5 +82,13 @@ public class Almacen{
 
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
+    }
+
+    public Estados getStatus() {
+        return status;
+    }
+
+    public void setStatus(Estados status) {
+        this.status = status;
     }
 }

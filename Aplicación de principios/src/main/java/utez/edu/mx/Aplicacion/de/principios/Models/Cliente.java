@@ -1,5 +1,6 @@
 package utez.edu.mx.Aplicacion.de.principios.Models;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -13,7 +14,10 @@ public class Cliente {
     private String numerotel;
     private String correo;
 
+    private String password;
+
     @OneToMany(mappedBy = "cliente")
+    @JsonManagedReference
     private List<Almacen> almacenes;
 
     public long getId() {
@@ -46,6 +50,14 @@ public class Cliente {
 
     public void setCorreo(String correo) {
         this.correo = correo;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }
 

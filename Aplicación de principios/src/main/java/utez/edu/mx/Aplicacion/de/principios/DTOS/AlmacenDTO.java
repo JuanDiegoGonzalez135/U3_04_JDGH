@@ -1,6 +1,7 @@
 package utez.edu.mx.Aplicacion.de.principios.DTOS;
 
 import utez.edu.mx.Aplicacion.de.principios.Models.Almacen;
+import utez.edu.mx.Aplicacion.de.principios.Models.Estados;
 import utez.edu.mx.Aplicacion.de.principios.Models.Tamaños;
 
 import java.time.LocalDate;
@@ -11,14 +12,15 @@ public class AlmacenDTO {
     private LocalDate fechaRegistro;
     private Double precioVenta;
     private  Tamaños tamaño;
-
     private Long cedeId;
     private String cedeClave;
     private String estado;
     private String municipio;
-
     private Long clienteId;
     private String nombreCliente;
+
+    private Estados status;
+
 
     // Constructor desde Almacen:
     public AlmacenDTO() {
@@ -28,15 +30,19 @@ public class AlmacenDTO {
         this.clave = almacen.getClave();
         this.fechaRegistro = almacen.getFechaRegistro();
         this.precioVenta = almacen.getPrecioVenta();
-        this.tamaño = almacen.getTamaño(); // O .name() si es enum en texto
+        this.tamaño = almacen.getTamaño(); // Si es enum se guarda bien
 
         this.cedeId = almacen.getCede().getId();
         this.cedeClave = almacen.getCede().getClave();
         this.estado = almacen.getCede().getEstado();
         this.municipio = almacen.getCede().getMunicipio();
 
-        this.clienteId = almacen.getCliente().getId();
-        this.nombreCliente = almacen.getCliente().getNombreCompleto();
+        if (almacen.getCliente() != null) {
+            this.clienteId = almacen.getCliente().getId();
+            this.nombreCliente = almacen.getCliente().getNombreCompleto();
+        }
+
+        this.status = almacen.getStatus();
     }
 
     public AlmacenDTO(Long id, String clave, LocalDate fechaRegistro, Double precioVenta, Tamaños tamaño, Long cedeId, String cedeClave, String estado, String municipio, Long clienteId, String nombreCliente) {
@@ -139,5 +145,13 @@ public class AlmacenDTO {
 
     public void setNombreCliente(String nombreCliente) {
         this.nombreCliente = nombreCliente;
+    }
+
+    public Estados getStatus() {
+        return status;
+    }
+
+    public void setStatus(Estados status) {
+        this.status = status;
     }
 }
